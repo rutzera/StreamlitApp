@@ -1,19 +1,20 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
-import streamlit_authenticator as stauth
 from jsonbin import load_key, save_key
 import yaml
 from yaml.loader import SafeLoader
+import streamlit_authenticator as stauth
 
 # Set page title
 st.set_page_config(page_title="CSV Scatter Plot")
+
+
 
 # -------- load secrets for jsonbin.io --------
 jsonbin_secrets = st.secrets["jsonbin"]
 api_key = jsonbin_secrets["api_key"]
 bin_id = jsonbin_secrets["bin_id"]
-
 
 # -------- user login --------
 with open('config.yaml') as file:
@@ -39,17 +40,17 @@ elif authentication_status == None:
 
 
 
-### APP
+st.write(username)
 
+
+test = load_key(api_key, bin_id, username)
+st.write(test)
+
+
+#### APP
 # Set page layout
 st.write("# CSV Scatter Plot")
 st.write("Upload a CSV file with two numerical columns to generate a scatter plot.")
-
-
-st.write(fullname)
-address_list = load_key(api_key, bin_id, username)
-st.write(address_list)
-
 
 # Create file uploader
 uploaded_file = st.file_uploader("Choose a CSV file", type=["csv"])
@@ -73,4 +74,4 @@ if uploaded_file is not None:
         # Display scatter plot using Streamlit
         st.pyplot(fig)
         
-
+        

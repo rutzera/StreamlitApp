@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Thu Apr 27 13:44:32 2023
+Created on Thu Apr 27 17:20:09 2023
 
 @author: adrian
 """
@@ -57,4 +57,4 @@ def save_key(api_key, bin_id, key, data):
     else:
         res[key] = data
     res = requests.put(url, headers=headers, json=res).json()
-    return 
+    return res
